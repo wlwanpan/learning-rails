@@ -6,4 +6,4 @@ class Main.Collections.Subbers extends Backbone.Collection
 
   populate_children: ->
     @each (subber) ->
-      subber.populate_stats_collection()
+      subber.populate_stats()

@@ -10,14 +10,14 @@ class Main.Views.Index extends Backbone.View
         <thead>
           <tr>
             <th width="2"><i class="fa fi-plus"/></th>
-            <th width="250"><i class="fa fi-torso"/><span class="fa">  Subber name</span></th>
-            <th width="250"><i class="fa fi-marker"/><span class="fa">  Subber location</span></th>
-            <th width="250"><i class="fa fi-results-demographics"/><span class="fa">  Subber alias</span></th>
+            <th width="250"><i class="fa fi-torso"/><span class="fa">  Server name</span></th>
+            <th width="250"><i class="fa fi-marker"/><span class="fa">  Server location</span></th>
+            <th width="250"><i class="fa fi-results-demographics"/><span class="fa">  Server alias</span></th>
             <th><i class="fa fi-clock"/><span class="fa">  Registered on</span></th>
             <th witdh="5"><i class="fa fi-male-female"/><span class="fa">  Count</span></th>
           </tr>
         </thead>
-        <tbody class="place-subber-here"></tbody>
+        <tbody class="place-subber-here">INSERT SERVER TABLE HERE</tbody>
       </table>
       Collection size: <%= size %>
     </div>

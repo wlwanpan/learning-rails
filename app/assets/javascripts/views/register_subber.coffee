@@ -8,10 +8,10 @@ class Main.Views.RegisterSubber extends Backbone.View
     <div class="row align-middle">
       <div class="medium-4 medium-centered">
         <h2> REGISTER NEW </h2>
-        <input class="subber_name" type="text" placeholder="Enter subber name [min: 5 char]">
-        <input class="subber_location" type="text" placeholder="Enter subber location [min: 5 char]">
-        <input class="subber_alias" type="text" placeholder="Enter subber alias [min: 5 char]">
-        <a class="form-submit button expanded" href="#"> SAVE SUBBER </a>
+        <input class="server_name" type="text" placeholder="Enter server name [min: 5 char]">
+        <input class="server_location" type="text" placeholder="Enter server location [min: 5 char]">
+        <input class="server_alias" type="text" placeholder="Enter server alias [min: 5 char]">
+        <a class="form-submit button expanded" href="#"> SAVE SERVER </a>
       </div>
     </div>
 
@@ -34,7 +34,7 @@ class Main.Views.RegisterSubber extends Backbone.View
       alert "NO DATA ADDED"
 
   _getData: ->
-    input_data_field = ["subber_name", "subber_location", "subber_alias"]
+    input_data_field = ["server_name", "server_location", "server_alias"]
 
     return _.reduce input_data_field, (accumulator, input_tag) ->
 

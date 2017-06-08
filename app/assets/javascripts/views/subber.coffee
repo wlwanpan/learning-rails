@@ -4,9 +4,9 @@ class Main.Views.Subber extends Backbone.View
   className: 'edit-subber-placeholder'
   template:  _.template '''
     <td><a class="server-edit-button" href="#"><i class="fi-pencil"></i></a></td>
-    <td><%- subber_name %></td>
-    <td><%- subber_location %></td>
-    <td><%- subber_alias %></td>
+    <td><%- server_name %></td>
+    <td><%- server_location %></td>
+    <td><%- server_alias %></td>
     <td class="light"><%- moment(created_at).format('MMMM Do YYYY') %></td>
     <td class="light"><%- stats.length %></td>
   '''

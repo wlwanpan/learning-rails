@@ -8,13 +8,13 @@ class Main.Views.EditSubber extends Backbone.View
       <div><a class="remove-button" href="#"><i class="fi-x"></i></a></div>
     </td>
     <td>
-      <div><input class="subber_name" type="text" placeholder=<%- subber_name %>></div>
+      <div><input class="server_name" type="text" placeholder=<%- server_name %>></div>
     </td>
     <td>
-      <div><input class="subber_location" type="text" placeholder=<%- subber_location %>></div>
+      <div><input class="server_location" type="text" placeholder=<%- server_location %>></div>
     </td>
     <td>
-      <div><input class="subber_alias" type="text" placeholder=<%- subber_alias %>></div>
+      <div><input class="server_alias" type="text" placeholder=<%- server_alias %>></div>
     </td>
     <td>
       <div><a href="#" class="edit-button button hollow expanded"> Submit </a></div>
@@ -38,7 +38,7 @@ class Main.Views.EditSubber extends Backbone.View
       @model.save input_data_hash, ## <========== TO CHANGE TO ADD COLLECTION DATA SAVE
         wait: true
         success: =>
-          console.log "successfully updated: #{@model.get("subber_name")}"
+          console.log "successfully updated: #{@model.get("server_name")}"
           # @model.init_stat_collection()
           @_remove_el()
         error: =>
@@ -60,7 +60,7 @@ class Main.Views.EditSubber extends Backbone.View
     }
 
   _getData: ->
-    input_data_field = ["subber_name", "subber_location", "subber_alias"]
+    input_data_field = ["server_name", "server_location", "server_alias"]
     return _.reduce input_data_field, (accumulator, input_tag) ->
 
       value = @$("input.#{input_tag}").val()

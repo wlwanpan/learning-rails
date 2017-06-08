@@ -50,10 +50,10 @@ class Main.Views.Charts extends Backbone.View
     subbersPlaceholder = @$('.chart-subbers-placeholder')
 
     @collection.each (sub) =>
-      name = sub.get "subber_name"
+      name = sub.get "server_name"
       subbersPlaceholder.append("<div>#{name}</div>")
       output = "<div>Subber Name: #{name} with "
-      sub.stats_collection.each (stat) =>
+      sub.statistics.each (stat) =>
         count = stat.get "user_count"
         date = stat.get "date"
         output += "<span>| count: #{count}, date: #{date} |</span>"

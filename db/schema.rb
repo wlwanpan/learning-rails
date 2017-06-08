@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170607201831) do
+ActiveRecord::Schema.define(version: 20170608185406) do
 
   create_table "stats", force: :cascade do |t|
     t.integer "user_count"
@@ -20,9 +20,9 @@ ActiveRecord::Schema.define(version: 20170607201831) do
   end
 
   create_table "subbers", force: :cascade do |t|
-    t.string "subber_name"
-    t.string "subber_location"
-    t.string "subber_alias"
+    t.string "server_name"
+    t.string "server_location"
+    t.string "server_alias"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

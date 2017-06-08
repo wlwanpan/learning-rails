@@ -40,8 +40,13 @@ h1 {
   transform: translateY(-50%);
 }
 
+.top-bar {
+  background-color: #2C3840 !important;
+}
+
 #main-container{
   background-color: #F0F4F7;
+  overflow-y: hidden;
   height: 100vh;
   position: relative;
 }
