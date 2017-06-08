@@ -18,7 +18,7 @@ class Main.Router extends Backbone.Router
   routes:
     '': 'index'
     'register': '_registerSubberForm'
-    'stats': '_displayStats'
+    'stats': '_displayCharts'
 
   initialize: ->
 
@@ -44,10 +44,10 @@ class Main.Router extends Backbone.Router
         collection: @subbers_list
         $wrapper: @$display_wrapper
 
-  _displayStats: ->
+  _displayCharts: ->
 
     @_switchWindow () =>
-      new Main.Views.Stats
+      new Main.Views.Charts
         collection: @subbers_list
         $wrapper: @$display_wrapper
 

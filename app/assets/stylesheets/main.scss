@@ -48,13 +48,16 @@ h1 {
 
 #navigation-wrapper {
   background-color: #435F80;
-  padding-top: 10%;
-  padding-bottom: 10%;
-  border-radius: 50px 50px 50px 50px;
+  float: left;
+  height: 100%;
+  width: 60px;
 }
 
 #display-wrapper {
   position: relative;
+  display: inline-block;
+  width: 90%;
+  overflow: hidden;
 }
 
 .register-subber-form {

@@ -8,6 +8,7 @@ class Main.Models.Subber extends Backbone.Model
     subber_name: ""
     subber_location: ""
     subber_alias: ""
+    created_at: ""
 
   initialize: (options) ->
 
@@ -21,7 +22,8 @@ class Main.Models.Subber extends Backbone.Model
     @stats_collection.reset @get "stats"
     @set 'stats', ''
 
-  as_json_for_save: ->
-    output = @toJSON()
-    output.stats = @stats.toJSON()
+  toJSON: ->
+    statData = @stats_collection.toJSON()
+    output = super
+    output.stats = statData
     output

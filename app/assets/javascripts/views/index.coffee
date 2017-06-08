@@ -9,7 +9,7 @@ class Main.Views.Index extends Backbone.View
       <table class="unstriped table-scroll">
         <thead>
           <tr>
-            <th width="2"></th>
+            <th width="2"><i class="fa fi-plus"/></th>
             <th width="250"><i class="fa fi-torso"/><span class="fa">  Subber name</span></th>
             <th width="250"><i class="fa fi-marker"/><span class="fa">  Subber location</span></th>
             <th width="250"><i class="fa fi-results-demographics"/><span class="fa">  Subber alias</span></th>
