@@ -2,7 +2,7 @@
 class Main.Views.RegisterSubber extends Backbone.View
 
   tagName: 'form'
-  className: "register-subber-form"
+  className: "register-subber-form custom"
   template: _.template '''
 
     <div class="row align-middle">
@@ -11,7 +11,13 @@ class Main.Views.RegisterSubber extends Backbone.View
         <input class="server_name" type="text" placeholder="Enter server name [min: 5 char]">
         <input class="server_location" type="text" placeholder="Enter server location [min: 5 char]">
         <input class="server_alias" type="text" placeholder="Enter server alias [min: 5 char]">
-        <a class="form-submit button expanded" href="#"> SAVE SERVER </a>
+        <select class="server_key">
+          <option DISABLED> Choose server domain </option>
+          <option value="us"> US </option>
+          <option value="ca"> CA </option>
+          <option value="ubc"> UBC </option>
+        </select>
+        <a class="form-submit button expanded hollow" href="#"> SAVE SERVER </a>
       </div>
     </div>
 
@@ -22,9 +28,11 @@ class Main.Views.RegisterSubber extends Backbone.View
   # Ref and Hash data to POST to back-end
   _sendRegisterSubber: ->
     # Returns a hash if input is not empty else {}
-    input_data_hash = @_getData()
+    serverKeySelected = @$(".server_key option:selected").val()
+    input_data_hash = @_getInputData()
     # Check if datahash not empty and adds the entry AT index 0
     if ! _.isEmpty input_data_hash
+      input_data_hash.key = serverKeySelected
       @collection.create input_data_hash,
         wait: true
         at: 0
@@ -33,7 +41,7 @@ class Main.Views.RegisterSubber extends Backbone.View
     else
       alert "NO DATA ADDED"
 
-  _getData: ->
+  _getInputData: ->
     input_data_field = ["server_name", "server_location", "server_alias"]
 
     return _.reduce input_data_field, (accumulator, input_tag) ->

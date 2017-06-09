@@ -39,6 +39,6 @@ class SubbersController < ApplicationController
   # GET request /subber/:id
   private
     def subber_params
-      params.require(:subber).permit(:server_name, :server_location, :server_alias, :created_at, :stats)
+      params.require(:subber).permit(:key, :server_name, :server_location, :server_alias, :created_at, :stats)
     end
 end

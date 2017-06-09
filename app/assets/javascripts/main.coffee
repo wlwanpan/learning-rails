@@ -11,7 +11,7 @@ window.Main =
     @Router = new Main.Router()
     Backbone.history.start
       pushState: true
-      root: ''
+      root: '/'
 
 class Main.Router extends Backbone.Router
 
@@ -38,7 +38,6 @@ class Main.Router extends Backbone.Router
 
   _registerSubberForm: ->
     # Assign View to Model and Location in index html
-
     @_switchWindow () =>
       new Main.Views.RegisterSubber
         collection: @subbers_list
@@ -56,7 +55,7 @@ class Main.Router extends Backbone.Router
     @$display_wrapper.velocity {
       opacity: 0
     }, {
-      duration: 300,
+      duration: 200,
       easing: "easeInSine",
       complete: =>
         func.call()

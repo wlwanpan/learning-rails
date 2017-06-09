@@ -6,6 +6,7 @@ class Main.Models.Subber extends Backbone.Model
     server_name: ""
     server_location: ""
     server_alias: ""
+    key: "none"
     created_at: ""
 
   initialize: (options) ->
