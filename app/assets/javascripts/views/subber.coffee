@@ -5,10 +5,10 @@ class Main.Views.Subber extends Backbone.View
   template:  _.template '''
     <td><a class="server-edit-button" href="#"><i class="fi-pencil"></i></a></td>
     <td><%- server_name %></td>
-    <td><%- server_location %></td>
+    <td><%- server_location %> (<%- key %>)</td>
     <td><%- server_alias %></td>
     <td class="light"><%- moment(created_at).format('MMMM Do YYYY') %></td>
-    <td class="light"><%- stats.length %></td>
+    <td class="light"><%- statistics.length %></td>
   '''
   initialize: (options) ->
     { @$wrapper, @model } = options

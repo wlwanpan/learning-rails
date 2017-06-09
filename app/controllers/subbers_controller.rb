@@ -6,7 +6,7 @@ class SubbersController < ApplicationController
   def index
     @subber = Subber.all
     respond_to do |format|
-      format.json { render json: @subber.to_json(include: :stats) }
+      format.json { render json: @subber.to_json(include: :statistics) }
     end
   end
   # POST request /subber/:id
@@ -39,6 +39,6 @@ class SubbersController < ApplicationController
   # GET request /subber/:id
   private
     def subber_params
-      params.require(:subber).permit(:key, :server_name, :server_location, :server_alias, :created_at, :stats)
+      params.require(:subber).permit(:key, :server_name, :server_location, :server_alias, :created_at, :statistics)
     end
 end

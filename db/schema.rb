@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170608210535) do
+ActiveRecord::Schema.define(version: 20170609160145) do
 
-  create_table "stats", force: :cascade do |t|
+  create_table "statistics", force: :cascade do |t|
     t.integer "user_count"
     t.integer "subber_id"
     t.integer "date"

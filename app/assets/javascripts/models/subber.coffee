@@ -6,7 +6,7 @@ class Main.Models.Subber extends Backbone.Model
     server_name: ""
     server_location: ""
     server_alias: ""
-    key: "none"
+    key: "wonderland"
     created_at: ""
 
   initialize: (options) ->
@@ -18,11 +18,13 @@ class Main.Models.Subber extends Backbone.Model
     @populate_stats()
 
   populate_stats: ->
-    @statistics.reset @get "stats"
-    @set 'stats', ''
+    # Populate @statistics collection for each subber
+    @statistics.reset @get "statistics"
+    # reset statistics object to empty string
+    @set 'statistics', ''
 
   toJSON: ->
-    statData = @statistics.toJSON()
+    statsData = @statistics.toJSON()
     output = super
-    output.stats = statData
+    output.statistics = statsData
     output
