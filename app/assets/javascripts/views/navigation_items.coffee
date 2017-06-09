@@ -6,8 +6,8 @@
       <a href="#" data-path="" class="nav_item"><i class="fi fi-home"></i></a>
       <a href="#" data-path="database" class="nav_item"><i class="fi fi-database"></i></a>
       <a href="#" data-path="register" class="nav_item"><i class="fi fi-plus"></i></a>
-      <a href="#" data-path="stats" class="nav_item"><i class="fi fi-graph-bar"></i></a>
-      <a href="#" data-path="stats" class="nav_item"><i class="fi fi-web"></i></a>
+      <a href="#" data-path="charts" class="nav_item"><i class="fi fi-graph-bar"></i></a>
+      <a href="#" data-path="charts" class="nav_item"><i class="fi fi-web"></i></a>
 
     '''
     events:

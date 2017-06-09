@@ -19,7 +19,7 @@ class Main.Router extends Backbone.Router
     '': '_home'
     'database': '_displayDatabase'
     'register': '_registerSubberForm'
-    'stats': '_displayCharts'
+    'charts': '_displayCharts'
 
   initialize: ->
 
