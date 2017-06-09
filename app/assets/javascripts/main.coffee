@@ -16,7 +16,8 @@ window.Main =
 class Main.Router extends Backbone.Router
 
   routes:
-    '': 'index'
+    '': '_home'
+    'database': '_displayDatabase'
     'register': '_registerSubberForm'
     'stats': '_displayCharts'
 
@@ -32,7 +33,11 @@ class Main.Router extends Backbone.Router
       collection: @subbers_list
       $wrap: @$display_wrapper
 
-  index: ->
+  _home: ->
+    @_switchWindow () =>
+      @$display_wrapper.html("<h1>DISPLAY HOME ITEMS HERE</h1>")
+
+  _displayDatabase: ->
     @_switchWindow () =>
       @index_display.reRender()
 

@@ -5,7 +5,7 @@ class Main.Views.Charts extends Backbone.View
   className: "charts-view row"
   template: _.template '''
 
-    <div class="subbers-container medium-3 columns">
+    <div class="subbers-container small-4 medium-3 columns">
       <i class="chart-arrow fi-arrow-left"/>
       <h2>CHART</h2>
       <select>

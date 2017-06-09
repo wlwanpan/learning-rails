@@ -17,7 +17,6 @@
 }
 
 body {
-  overflow: scroll;
 }
 
 h1 {
@@ -48,13 +47,14 @@ h1 {
 
 #main-container{
   background-color: #F0F4F7;
-  overflow-y: hidden;
   height: 100vh;
   position: relative;
 }
 
 #navigation-wrapper {
   background-color: #435F80;
+  position: fixed;
+  display: inline-block;
   z-index: 999;
   float: left;
   height: 100%;
@@ -62,10 +62,11 @@ h1 {
 }
 
 #display-wrapper {
-  position: relative;
+  position: absolute;
+  left: 60px;
+  overflow-y: auto;
   display: inline-block;
   width: 95%;
-  overflow: hidden;
 }
 
 .register-subber-form {

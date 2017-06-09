@@ -25,7 +25,7 @@ class Main.Views.Subber extends Backbone.View
     @trigger "edit"
 
   _render: ->
-    # console.log @model.toJSON()
+    # toJSON morph to include statistics
     @$el.html @template @model.toJSON()
 
   _position: ->

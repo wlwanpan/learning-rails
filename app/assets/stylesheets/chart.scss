@@ -1,6 +1,6 @@
 $chart-easing: cubic-bezier(0.42, 0, 0.58, 1);
-$subber-slide-offset: -200px;
-$chart-slide-offset: -150px;
+$subber-slide-offset: -250px;
+$chart-slide-offset: -200px;
 
 .charts-view {
 
@@ -17,6 +17,7 @@ $chart-slide-offset: -150px;
 
   .subbers-placeholder {
     transition: all 300ms $chart-easing;
+    display: inline-block;
     opacity: 0;
   }
 
