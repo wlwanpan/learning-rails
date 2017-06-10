@@ -20,7 +20,6 @@ class Main.Views.Index extends Backbone.View
         </thead>
         <tbody class="place-subber-here"></tbody>
       </table>
-      Collection size: <%= size %>
     </div>
 
   '''

@@ -1,8 +1,4 @@
 
-arrow = '''
-  <i class="chart-arrow fi-arrow-left"/>
-'''
-
 class Main.Views.Charts extends Backbone.View
 
   tagName: "div"
@@ -22,10 +18,8 @@ class Main.Views.Charts extends Backbone.View
       </form>
       <div class="subbers-placeholder"></div>
     </div>
-    <div class="canvas-container">
-      <h3>DISPLAY DATA HERE</h3>
-      <canvas class="chart-canvas" width="800px" height="600px"></canvas>
-      <div class="test-stat-placeholder"></div>
+    <div class="canvas-container small-8 medium-9 columns">
+      <canvas class="chart-canvas" width="100%"></canvas>
     </div>
 
   '''
@@ -40,14 +34,9 @@ class Main.Views.Charts extends Backbone.View
     @searchText = ""
     @chart_type = 'line'
 
-    # @_render()
-    # @_position()
-    # @_render_subbers_selection()
-    # @_render_chart()
     @reRender()
-    console.log @$(".charts-view")
 
-    @listenTo @collection, 'add', =>
+    @listenTo @collection, 'add remove', =>
       @_render_subbers_selection()
 
   _updateSearchText: ->
@@ -55,56 +44,34 @@ class Main.Views.Charts extends Backbone.View
 
   _updateChartType: ->
     @chart_type = @$("select option:selected").val()
+    @lineChart.clear()
     @_render_chart()
 
   _render_chart: () ->
-    temp_x_axis = _.range(15)
     @$canvas = @$(".chart-canvas")
-    @$canvas.width  = @$canvas.offsetWidth;
+
     @lineChart = new Chart @$canvas,
       type: @chart_type
-      options:
-        title:
-          display: true
-          text: "Linear chart of active users"
-        legend:
-          position: 'right'
-        animationEasing: 'easeOutElastic'
-        responsive: true
-        scaleFontSize: 50
-        scales:
-          xAxes: [{
-            gridLines:
-              display:true
-          }]
-          yAxes: [{
-            gridLines:
-              display:true
-          }]
+      options: ChartOptions.line
       data:
-        labels: temp_x_axis
-        fill: false
-        datasets: [{
-          label: 'SAMPLE DATA'
-          fill: false
-          borderColor: '#000000'
-          data: [20, 30, 80, 20, 40, 10]
-        }]
+        labels: _.range(15)
+        datasets: []
 
   _add_to_chart: (subberModel) ->
-
     # Create New Chart with data
     label = subberModel.get('server_alias')
     color = @_randomHex()
     user_count_data = @_get_user_stat subberModel.statistics.toJSON()
 
-    dataset =
+    dataset_options = _.clone ChartOptions.dataset
+    dataset = _.extend dataset_options,
       label: label
-      fill: false
       borderColor: color
+      backgroundColor: color
       data: user_count_data
-    # @lineChart.data.datasets[0].data.push Math.floor((Math.random() * 100));
+
     @lineChart.data.datasets.push dataset
+    @lineChart.update()
     # console.log dataset
 
   _get_index_of: (name) ->
@@ -144,19 +111,6 @@ class Main.Views.Charts extends Backbone.View
           @lineChart.data.datasets.splice indexModel, 1
         else
           @_add_to_chart(subber_selected.model)
-        @lineChart.update()
-
-  _render_subber_data: ->
-    dataPlaceholder = @$('.test-stat-placeholder')
-
-    @collection.each (sub) =>
-      name = sub.get "server_name"
-      output = "<div>Subber Name: #{name} with "
-      sub.statistics.each (stat) =>
-        count = stat.get "user_count"
-        date = stat.get "date"
-        output += "<span>| count: #{count}, date: #{date} |</span>"
-      dataPlaceholder.append output+"</div>"
 
   reRender: ->
 

@@ -5,22 +5,20 @@ class Main.Views.Home extends Backbone.View
   className: "row"
   template: _.template '''
 
-  <div class="main-summary-container medium-6 medium-centered columns">
-    <div class="row">
-      <div class="summary-container small-4 columns">
-        <h3>Servers Registered: <%- size %></h3>
+  <div class="main-summary-container medium-9 medium-centered columns">
+    <div class="row small-up-3 medium-up-3">
+      <div class="summary-container column column-block">
+        <p>Servers Registered: <%- size %></p>
       </div>
-      <div class="summary-container small-4 columns">
-        <h3>Total Active Users: </h3>
+      <div class="summary-container column column-block">
+        <p>Total Active Users: </p>
       </div>
-      <div class="summary-container small-4 columns">
-        <h3>Avg Users per Server: </h3>
+      <div class="summary-container column column-block">
+        <p>Avg Users per Server: </p>
       </div>
-    </div>
-    <div class="row">
-      <div class="summary-container small-4 columns"> <h3>DATA SUMMARY</h3> </div>
-      <div class="summary-container small-4 columns"> <h3>DATA SUMMARY</h3> </div>
-      <div class="summary-container small-4 columns"> <h3>DATA SUMMARY</h3> </div>
+      <div class="summary-container column column-block"> <p>DATA SUMMARY</p> </div>
+      <div class="summary-container column column-block"> <p>DATA SUMMARY</p> </div>
+      <div class="summary-container column column-block"> <p>DATA SUMMARY</p> </div>
     </div>
   </div>
 

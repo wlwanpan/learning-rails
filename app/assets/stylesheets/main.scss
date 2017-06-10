@@ -16,7 +16,14 @@
    text-align: center;
 }
 
+html {
+    overflow: hidden;
+    height: 100%;
+}
+
 body {
+    height: 100%;
+    overflow: auto;
 }
 
 h1 {
@@ -63,8 +70,9 @@ h1 {
 
 #display-wrapper {
   position: absolute;
+  background-color: #F0F4F7;
   left: 60px;
-  overflow-y: auto;
+  overflow-x: hidden;
   display: inline-block;
   width: 95%;
 }

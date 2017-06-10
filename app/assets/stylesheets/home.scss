@@ -1,11 +1,13 @@
 
 .main-summary-container {
 
-  padding-top: 10%;
-
   .summary-container {
-    border: 1px solid black;
-    margin: 10px;
+    margin-top: 10%;
+    border: 1px solid #8da2b5;
+    height: 10rem;
   }
 
+  .summary-inner {
+    border: 1px solid #8da2b5;
+  }
 }

@@ -47,7 +47,6 @@ class Main.Router extends Backbone.Router
 
   _displayDatabase: ->
     @_switchWindow () =>
-      console.log @index_display
       @index_display.reRender()
 
   _registerSubberForm: ->
