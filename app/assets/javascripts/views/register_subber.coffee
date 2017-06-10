@@ -7,7 +7,6 @@ class Main.Views.RegisterSubber extends Backbone.View
 
     <div class="row align-middle">
       <div class="medium-4 medium-centered">
-        <h2> REGISTER NEW </h2>
         <input class="server_name" type="text" placeholder="Enter server name [min: 5 char]">
         <input class="server_location" type="text" placeholder="Enter server location [min: 5 char]">
         <input class="server_alias" type="text" placeholder="Enter server alias [min: 5 char]">
@@ -17,7 +16,7 @@ class Main.Views.RegisterSubber extends Backbone.View
           <option value="ca"> CA </option>
           <option value="ubc"> UBC </option>
         </select>
-        <a class="form-submit button expanded hollow" href="#"> SAVE SERVER </a>
+        <a class="form-submit button expanded hollow" href="#"> REGISTER NEW SERVER </a>
       </div>
     </div>
 

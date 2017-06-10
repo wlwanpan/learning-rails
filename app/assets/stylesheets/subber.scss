@@ -45,3 +45,23 @@ span.fa {
 i.fa {
   color: #435F80;
 }
+
+$dropdown-offset: -205px;
+
+.index-main-container {
+  transform: translateY($dropdown-offset);
+  transition: transform 300ms;
+}
+.register-subber-placeholder {
+  display: block;
+  padding-bottom: 10px;
+  transition: transform 200ms;
+  transform: translateY($dropdown-offset);
+
+  &:hover {
+    transform: translateY(10px);
+  }
+  &:hover ~ .index-main-container {
+    transform: translateY(0px);
+  }
+}

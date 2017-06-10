@@ -18,6 +18,7 @@ def update_subber_statistics
     fake_stat_api.each do |stat|
       subber.statistics.build stat
     end
+    subber.save
   end
 end
 

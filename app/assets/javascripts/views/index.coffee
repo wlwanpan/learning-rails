@@ -5,11 +5,12 @@ class Main.Views.Index extends Backbone.View
   className: "row"
   template: _.template '''
 
-    <div class="medium-12 medium-centered">
+    <div class="register-subber-placeholder"></div>
+    <div class="index-main-container medium-12 medium-centered">
       <table class="unstriped table-scroll">
         <thead>
           <tr>
-            <th width="2"><i class="fa fi-plus"/></th>
+            <th width="2"></th>
             <th width="250"><i class="fa fi-torso"/><span class="fa">  Server name</span></th>
             <th width="250"><i class="fa fi-marker"/><span class="fa">  Server location</span></th>
             <th width="250"><i class="fa fi-results-demographics"/><span class="fa">  Server alias</span></th>
@@ -17,7 +18,7 @@ class Main.Views.Index extends Backbone.View
             <th witdh="5"><i class="fa fi-male-female"/><span class="fa">  Count</span></th>
           </tr>
         </thead>
-        <tbody class="place-subber-here">INSERT SERVER TABLE HERE</tbody>
+        <tbody class="place-subber-here"></tbody>
       </table>
       Collection size: <%= size %>
     </div>
@@ -25,18 +26,22 @@ class Main.Views.Index extends Backbone.View
   '''
 
   initialize: (options) ->
-    { @$wrap, @collection } = options
-
+    { @$wrapper, @collection } = options
+    #@$register_subber_placeholder = @$(".register-subber-placeholder")
     @_initTick()
     @listenTo @collection, 'add remove', =>
-      @_render()
-      @_render_items()
+      @_update_display()
 
   reRender: ->
+    @_update_display()
+    @_position()
 
+  _update_display: ->
     @_render()
     @_render_items()
-    @_position()
+    new Main.Views.RegisterSubber
+      collection: @collection
+      $wrapper: @$(".register-subber-placeholder")
 
   _render: ->
     @$el.html @template(size: @collection.length)
@@ -58,9 +63,14 @@ class Main.Views.Index extends Backbone.View
         model: subber_view.model
 
   _position: ->
-    @$wrap.html @el
+    @$wrapper.html @el
 
   _initTick: ->
+
+    @_render()
+    @_render_items()
+    @_position()
+
     @updateTick = setInterval () =>
 
       prevCollection = @collection.clone()
