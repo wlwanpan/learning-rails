@@ -17,6 +17,7 @@
 //= require backbone
 //= require moment
 //= require chart
+//= require chart_options
 //= require main
 //= require_tree ./models
 //= require_tree ./collections

@@ -2,8 +2,7 @@
 Rails.application.routes.draw do
 
   resources :subbers
-  resources :stats
-  resources :register
+  get '*unmatched_route', :to => "main#index"
   root to: "main#index"
 
 end

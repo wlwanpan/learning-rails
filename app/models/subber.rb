@@ -1,9 +1,10 @@
 class Subber < ApplicationRecord
 
-  has_many :stats, dependent: :destroy, autosave: true
-  validates_associated :stats
+  has_many :statistics, dependent: :destroy, autosave: true
+  validates_associated :statistics
 
-  validates :subber_name, uniqueness: true, presence: true, length: { minimum: 5 }
-  validates :subber_location, :subber_alias, presence: true, length: { minimum: 5 }
+  validates :server_name, uniqueness: true, presence: true, length: { minimum: 5 }
+  validates :server_location, :server_alias, presence: true, length: { minimum: 5 }
+  validates :key, presence: true
 
 end

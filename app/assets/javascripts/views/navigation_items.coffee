@@ -4,10 +4,9 @@
     template: _.template '''
 
       <a href="#" data-path="" class="nav_item"><i class="fi fi-home"></i></a>
-      <a href="#" data-path="register" class="nav_item"><i class="fi fi-plus"></i></a>
-      <a href="#" data-path="stats" class="nav_item"><i class="fi fi-graph-bar"></i></a>
-      <a href="#" data-path="stats" class="nav_item"><i class="fi fi-database"></i></a>
-      <a href="#" data-path="stats" class="nav_item"><i class="fi fi-web"></i></a>
+      <a href="#" data-path="database" class="nav_item"><i class="fi fi-database"></i></a>
+      <a href="#" data-path="charts" class="nav_item"><i class="fi fi-graph-bar"></i></a>
+      <a href="#" data-path="charts" class="nav_item"><i class="fi fi-web"></i></a>
 
     '''
     events:
@@ -23,11 +22,13 @@
 
     initialize: (options) ->
 
-      {@$wrap} = options
+      {@$wrapper} = options
 
       @_render()
       @_position()
 
-    _render: -> @$el.html @template()
+    _render: ->
+      @$el.html @template()
 
-    _position: -> @$wrap.html @el
+    _position: ->
+      @$wrapper.html @el
