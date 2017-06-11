@@ -5,7 +5,7 @@ class Main.Views.RegisterSubber extends Backbone.View
   className: "register-subber-form custom"
   template: _.template '''
 
-    <div class="row align-middle">
+    <div class="row">
       <div class="medium-4 medium-centered">
         <input class="server_name" type="text" placeholder="Enter server name [min: 5 char]">
         <input class="server_location" type="text" placeholder="Enter server location [min: 5 char]">

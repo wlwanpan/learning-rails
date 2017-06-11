@@ -3,17 +3,27 @@
 ::-webkit-input-placeholder {
    text-align: center;
 }
-
-:-moz-placeholder { /* Firefox 18- */
+:-moz-placeholder {
    text-align: center;
 }
-
-::-moz-placeholder {  /* Firefox 19+ */
+::-moz-placeholder {
    text-align: center;
 }
-
 :-ms-input-placeholder {
    text-align: center;
+}
+
+.button.active.focus,
+.button.active:focus,
+.button.focus,
+.button.focus:active,
+.button:active:focus,
+.button:focus {
+  outline: 0 !important;
+  outline-offset: 0  !important;
+  background-image: none  !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none  !important;
 }
 
 html {
@@ -71,6 +81,7 @@ h1 {
 #display-wrapper {
   position: absolute;
   background-color: #F0F4F7;
+  height: 100%;
   left: 60px;
   overflow-x: auto;
   display: inline-block;

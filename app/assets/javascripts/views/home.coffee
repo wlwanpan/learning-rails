@@ -2,23 +2,35 @@
 class Main.Views.Home extends Backbone.View
 
   tagName: 'div'
-  className: "row"
+  className: "row align-middle"
   template: _.template '''
 
   <div class="main-summary-container medium-9 medium-centered columns">
     <div class="row small-up-3 medium-up-3">
       <div class="summary-container column column-block">
-        <p>Servers Registered: <%- size %></p>
+        <div><i class="home-i fi-mountains"></i></div>
+        <div>Servers Registered: <%- size %></div>
       </div>
       <div class="summary-container column column-block">
-        <p>Total Active Users: </p>
+        <div><i class="home-i fi-torsos"></i></div>
+        <div>Total Active Users: </div>
       </div>
       <div class="summary-container column column-block">
-        <p>Avg Users per Server: </p>
+        <div><i class="home-i fi-database"></i></div>
+        <div>Database Collection: </div>
       </div>
-      <div class="summary-container column column-block"> <p>DATA SUMMARY</p> </div>
-      <div class="summary-container column column-block"> <p>DATA SUMMARY</p> </div>
-      <div class="summary-container column column-block"> <p>DATA SUMMARY</p> </div>
+      <div class="summary-container column column-block">
+        <div><i class="home-i fi-loop"></i></div>
+        <div>Total Queries: </div>
+      </div>
+      <div class="summary-container column column-block">
+        <div><i class="home-i fi-trash"></i></div>
+        <div>Total Entries Deleted: </div>
+      </div>
+      <div class="summary-container column column-block">
+        <div><i class="home-i fi-calendar"></i></div>
+        <div>Last Fetch Called: </div>
+      </div>
     </div>
   </div>
 

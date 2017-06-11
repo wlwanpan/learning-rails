@@ -4,8 +4,9 @@ class Main.Views.ChartSubber extends Backbone.View
   tagName: "div"
   template: _.template '''
 
-    <button class="chart-subber-button primary hollow button">
-      <%- server_alias %>
+    <button name="select" class="chart-subber-button primary hollow button">
+      <div><i class="bi fi-torsos-all"></i><span class="bi-label"><%- server_alias %></span></div>
+      <div><i class="bi fi-map"></i><span class="bi-label"><%- server_location %></span></div>
     </button>
 
   '''
@@ -16,9 +17,15 @@ class Main.Views.ChartSubber extends Backbone.View
 
     @_render()
     @_position()
+    @$button = @$('.chart-subber-button')
 
   _selected: ->
     #console.log "#{@model.get("server_alias")} is #{@$("input").is(':checked')}"
+    if @$button.hasClass 'success'
+      @$button.removeClass 'success'
+    else
+      @$button.addClass 'success'
+
     @trigger 'checked'
 
   _render: ->

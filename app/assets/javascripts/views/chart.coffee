@@ -17,12 +17,12 @@ class Main.Views.Charts extends Backbone.View
       <form>
         <input type="text" class="search-form" placeholder="Search server">
       </form>
-      <div class="small-8 small-centered chart-custom-scroll subbers-placeholder button-group"></div>
+      <div class="small-12 small-centered chart-custom-scroll subbers-placeholder button-group"></div>
     </div>
     <div class="canvas-container small-11 small-centered columns">
       <div class="row">
         <div class="chart-option-bar small-11 small-centered">
-          <p> Linear Graph of Active Users </p>
+          <p> Graph of Active Users </p>
           <i class="ci fi-graph-bar"></i>
         </div>
       </div>

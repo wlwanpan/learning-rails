@@ -61,9 +61,11 @@ $chart-slide-offset: -275px;
   }
 
   .subbers-placeholder {
-    height: 250px;
-    // white-space:nowrap;
-    overflow:auto;
+    height: 200px;
+    overflow: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .subbers-container {
@@ -79,15 +81,28 @@ $chart-slide-offset: -275px;
 
     .chart-subber-button {
       transition: 100ms;
-      width: 200px;
-      height: 50px;
-      margin-bottom: 10px !important;
+      width: 150px;
+      height: 150px;
+      margin-right: 10px !important;
+      margin-left: 10px !important;
+
       &:hover {
         transform: scale(1.1);
       }
       &:active {
-
+        box-shadow: none;
       }
+
+      .bi {
+        font-size: 25px;
+        color: #DCE5F2;
+        margin: 5px !important;
+      }
+      .bi-label {
+        font-size: 12px;
+        font-weight: 500;
+      }
+
     }
 
     &:hover ~ .canvas-container {
