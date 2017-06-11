@@ -1,3 +1,11 @@
+selectoptions = '''
+  <select>
+    <option DISABLED> Choose Chart Type </option>
+    <option value="line"> Line Chart </option>
+    <option value="bar"> Bar Chart </option>
+    <option> Some other Chart </option>
+  </select>
+'''
 
 class Main.Views.Charts extends Backbone.View
 
@@ -5,27 +13,26 @@ class Main.Views.Charts extends Backbone.View
   className: "charts-view row"
   template: _.template '''
 
-    <div class="subbers-container small-4 medium-3 columns">
-      <h2>CHART</h2>
-      <select>
-        <option DISABLED> Choose Chart Type </option>
-        <option value="line"> Line Chart </option>
-        <option value="bar"> Bar Chart </option>
-        <option> Some other Chart </option>
-      </select>
+    <div class="subbers-container small-8 small-centered columns">
       <form>
         <input type="text" class="search-form" placeholder="Search server">
       </form>
-      <div class="subbers-placeholder"></div>
+      <div class="small-8 small-centered chart-custom-scroll subbers-placeholder button-group"></div>
     </div>
-    <div class="canvas-container small-8 medium-9 columns">
-      <canvas class="chart-canvas" width="100%"></canvas>
+    <div class="canvas-container small-11 small-centered columns">
+      <div class="row">
+        <div class="chart-option-bar small-11 small-centered">
+          <p> Linear Graph of Active Users </p>
+          <i class="ci fi-graph-bar"></i>
+        </div>
+      </div>
+      <canvas class="chart-canvas"></canvas>
     </div>
 
   '''
   events:
     'change .search-form': "_updateSearchText"
-    'change select': "_updateChartType"
+    'click .ci': "_updateChartType"
 
   initialize: (options) ->
     {@collection, @$wrapper} = options
@@ -43,7 +50,12 @@ class Main.Views.Charts extends Backbone.View
     @searchText = @$(".search-form").val()
 
   _updateChartType: ->
-    @chart_type = @$("select option:selected").val()
+    # @chart_type = @$("select option:selected").val()
+    if @chart_type == 'bar'
+      @chart_type = 'line'
+    else
+      @chart_type = 'bar'
+
     @lineChart.clear()
     @_render_chart()
 

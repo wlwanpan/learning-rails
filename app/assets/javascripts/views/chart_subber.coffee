@@ -2,24 +2,22 @@
 class Main.Views.ChartSubber extends Backbone.View
 
   tagName: "div"
-  className: "chart-subber"
   template: _.template '''
 
-    <div>
-        <input type="checkbox">
-        <%- server_alias %>
-    </div>
+    <button class="chart-subber-button primary hollow button">
+      <%- server_alias %>
+    </button>
 
   '''
   events:
-    'change input': "_checked"
+    'click button': "_selected"
   initialize: (options) ->
     {@model, @$wrapper} = options
 
     @_render()
     @_position()
 
-  _checked: ->
+  _selected: ->
     #console.log "#{@model.get("server_alias")} is #{@$("input").is(':checked')}"
     @trigger 'checked'
 

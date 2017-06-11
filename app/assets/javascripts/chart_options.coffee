@@ -2,7 +2,7 @@
 window.ChartOptions =
   line:
     title:
-      display: true
+      display: false
       text: "Linear chart of active users"
       padding: 20
       margin: 20
@@ -15,22 +15,22 @@ window.ChartOptions =
       xAxes: [{
         scaleLabel:
           display: true
-          labelString: 'Time Registered'
+          labelString: 'Registered Time / MM-YY'
           fontSize: 20
         gridLines:
           display: false
           lineWidth: 2
-          color: "#191919"
+          color: "#D3D3D3"
       }]
       yAxes: [{
         scaleLabel:
-          display: true
+          display: false
           labelString: '# of Active Users'
           fontSize: 20
         gridLines:
           display: false
           lineWidth: 2
-          color: "#191919"
+          color: "#D3D3D3"
       }]
   dataset:
     fill: false

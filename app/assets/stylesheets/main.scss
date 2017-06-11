@@ -23,7 +23,7 @@ html {
 
 body {
     height: 100%;
-    overflow: auto;
+    overflow: hidden;
 }
 
 h1 {
@@ -72,7 +72,7 @@ h1 {
   position: absolute;
   background-color: #F0F4F7;
   left: 60px;
-  overflow-x: hidden;
+  overflow-x: auto;
   display: inline-block;
   width: 95%;
 }
