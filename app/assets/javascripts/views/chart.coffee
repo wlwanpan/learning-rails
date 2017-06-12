@@ -53,7 +53,7 @@ class Main.Views.Charts extends Backbone.View
     @searchText = @$(".search-form").val()
 
   _updateChartType: ->
-    # @chart_type = @$("select option:selected").val()
+    # Change Chart type bar <-> line
     if @chart_type == 'bar'
       @chart_type = 'line'
     else
@@ -73,7 +73,8 @@ class Main.Views.Charts extends Backbone.View
         datasets: []
 
   _add_to_chart: (subberModel) ->
-    # Create New Chart with data
+    # Create New Data Array and push to Chart dataset
+    # Change implementation to {...dataPoints: [{x: "date, y: user_count}, ...]}
     label = subberModel.get('server_alias')
     color = @_randomHex()
     user_count_data = @_get_user_stat subberModel.statistics.toJSON()
@@ -87,8 +88,8 @@ class Main.Views.Charts extends Backbone.View
 
     @lineChart.data.datasets.push dataset
 
-    if dataset.length > @chart_buffer_range
-      dataset.shift()
+    if @lineChart.data.datasets.length > @chart_buffer_range
+      @lineChart.data.datasets.shift()
     @lineChart.update()
     # console.log dataset
 

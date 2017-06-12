@@ -13,7 +13,7 @@ class Main.Views.Home extends Backbone.View
       </div>
       <div class="summary-container column column-block">
         <div><i class="home-i fi-torsos"></i></div>
-        <div>Total Active Users: </div>
+        <div>Total Active Users: <%- totalUsers %></div>
       </div>
       <div class="summary-container column column-block">
         <div><i class="home-i fi-database"></i></div>
@@ -43,12 +43,19 @@ class Main.Views.Home extends Backbone.View
     @listenTo @collection, 'add remove change', =>
       @_render()
 
+  _get_total_user: ->
+    # get total user_count from all subbers
+    return _.reduce @collection.models, (accumulator, subber) ->
+      accumulator += subber.statistics.length
+      accumulator
+    , 0
+
   reRender: ->
     @_render()
     @_position()
 
   _render: ->
-    @$el.html @template(size: @collection.length)
+    @$el.html @template(size: @collection.length, totalUsers: @_get_total_user())
 
   _position: ->
     @$wrapper.html @el
