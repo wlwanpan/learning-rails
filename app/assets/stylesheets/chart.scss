@@ -1,6 +1,6 @@
 $chart-easing: cubic-bezier(0.42, 0, 0.58, 1);
-$subber-slide-offset: -300px;
-$chart-slide-offset: -275px;
+$subber-slide-offset: -200px;
+$chart-slide-offset: -175px;
 
 
 .chart-custom-scroll::-webkit-scrollbar-track {
@@ -61,7 +61,9 @@ $chart-slide-offset: -275px;
   }
 
   .subbers-placeholder {
-    height: 200px;
+    height: 150px;
+    opacity: 0;
+    transition: opacity 200ms;
     overflow: auto;
     display: flex;
     align-items: center;
@@ -71,8 +73,8 @@ $chart-slide-offset: -275px;
   .subbers-container {
 
     background-color: #DCE5F2;
-    height: 350px;
-    padding: 10px;
+    height: 250px;
+    padding-top: 15px;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
 
@@ -82,7 +84,7 @@ $chart-slide-offset: -275px;
     .chart-subber-button {
       transition: 100ms;
       width: 150px;
-      height: 150px;
+      height: 100px;
       margin-right: 10px !important;
       margin-left: 10px !important;
 
@@ -110,6 +112,9 @@ $chart-slide-offset: -275px;
     }
     &:hover {
       transform: translateY(0px);
+    }
+    &:hover > .subbers-placeholder {
+      opacity: 1;
     }
   }
 }

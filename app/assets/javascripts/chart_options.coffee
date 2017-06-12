@@ -15,7 +15,7 @@ window.ChartOptions =
       xAxes: [{
         scaleLabel:
           display: true
-          labelString: 'Registered Time / MM-YY'
+          labelString: 'Change int range to actual date'
           fontSize: 20
         gridLines:
           display: false

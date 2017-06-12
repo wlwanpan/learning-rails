@@ -6,7 +6,7 @@ class Main.Views.Home extends Backbone.View
   template: _.template '''
 
   <div class="main-summary-container medium-9 medium-centered columns">
-    <div class="row small-up-3 medium-up-3">
+    <div class="row small-up-2 medium-up-3">
       <div class="summary-container column column-block">
         <div><i class="home-i fi-mountains"></i></div>
         <div>Servers Registered: <%- size %></div>

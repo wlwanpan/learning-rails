@@ -13,7 +13,7 @@ class Main.Views.Charts extends Backbone.View
   className: "charts-view row"
   template: _.template '''
 
-    <div class="subbers-container small-8 small-centered columns">
+    <div class="subbers-container small-11 small-centered columns">
       <form>
         <input type="text" class="search-form" placeholder="Search server">
       </form>
@@ -40,11 +40,14 @@ class Main.Views.Charts extends Backbone.View
     @$form = @$(".search-form")
     @searchText = ""
     @chart_type = 'line'
+    @chart_buffer_range = 50
 
     @reRender()
 
     @listenTo @collection, 'add remove', =>
       @_render_subbers_selection()
+    @listenTo @collection, 'change', =>
+      @lineChart.update()
 
   _updateSearchText: ->
     @searchText = @$(".search-form").val()
@@ -66,7 +69,7 @@ class Main.Views.Charts extends Backbone.View
       type: @chart_type
       options: ChartOptions.line
       data:
-        labels: _.range(15)
+        labels: _.range(@chart_buffer_range)
         datasets: []
 
   _add_to_chart: (subberModel) ->
@@ -83,6 +86,9 @@ class Main.Views.Charts extends Backbone.View
       data: user_count_data
 
     @lineChart.data.datasets.push dataset
+
+    if dataset.length > @chart_buffer_range
+      dataset.shift()
     @lineChart.update()
     # console.log dataset
 

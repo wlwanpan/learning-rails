@@ -6,7 +6,7 @@ class Main.Views.ChartSubber extends Backbone.View
 
     <button name="select" class="chart-subber-button primary hollow button">
       <div><i class="bi fi-torsos-all"></i><span class="bi-label"><%- server_alias %></span></div>
-      <div><i class="bi fi-map"></i><span class="bi-label"><%- server_location %></span></div>
+      <div class="bi-label"><%- server_location %></div>
     </button>
 
   '''
