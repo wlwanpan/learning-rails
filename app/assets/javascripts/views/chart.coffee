@@ -80,7 +80,7 @@ class Main.Views.Charts extends Backbone.View
     # Change implementation to {...dataPoints: [{x: "date, y: user_count}, ...]}
     label = subberModel.get('server_alias')
     color = @_randomHex()
-    user_count_data = @_get_user_stat subberModel.statistics.toJSON()
+    user_count_data = @_get_user_stat subberModel
 
     dataset_options = _.clone ChartOptions.dataset
     dataset = _.extend dataset_options,
@@ -90,38 +90,37 @@ class Main.Views.Charts extends Backbone.View
       data: user_count_data
 
     @lineChart.data.datasets.push dataset
-    @lineChart.data.labels = @_get_chart_label subberModel.statistics.toJSON()
+    @lineChart.data.labels = @_get_chart_label subberModel
     @lineChart.update()
 
     @listenTo subberModel.statistics, 'change', =>
       console.log "#{subberModel.statistics} has new statistics added!!"
 
-  _get_index_of: (name) ->
-    (_.map @lineChart.data.datasets, (set) => set.label).indexOf name
+  _get_user_stat: (subberModel) ->
+    stats = @_model_stats_tojson subberModel
+    if stats
+      return _.reduce stats, (accumulator, stat) ->
+        accumulator.push stat.user_count
+        accumulator
+      , []
 
-  _get_user_stat: (stats) ->
-    return _.reduce stats, (accumulator, stat) ->
-      accumulator.push stat.user_count
-      accumulator
-    , []
+  _get_chart_label: (subberModel) ->
+    stats = @_model_stats_tojson subberModel
+    if stats
+      return _.reduce stats, (accumulator, stat) ->
+        accumulator.push moment(stat.date).format('LTS')
+        accumulator
+      , []
 
-  _get_chart_label: (stats) ->
-    return _.reduce stats, (accumulator, stat) ->
-      accumulator.push moment(stat.date).format('LTS')
-      accumulator
-    , []
+  _model_stats_tojson: (subberModel) ->
+    if subberModel && subberModel.statistics
+      subberModel.statistics.toJSON()
 
   _randomHex: ->
     return _.reduce _.range(6), (accumulator, colorCode) ->
       accumulator += '0123456789ABCDEF'[Math.floor(Math.random() * 16)]
       accumulator
     , "#"
-
-  _render: ->
-    @$el.html @template()
-
-  _position: ->
-    @$wrapper.html @el
 
   _render_subbers_selection: ->
     subbersPlaceholder = @$(".subbers-placeholder")
@@ -134,12 +133,53 @@ class Main.Views.Charts extends Backbone.View
       # Add listen event to update subber chart to display
       @listenTo subber_selected, 'checked', () =>
 
-        indexModel = @_get_index_of subber_selected.model.get('server_alias')
-        if indexModel > -1
-          @lineChart.data.datasets.splice indexModel, 1
+        indexOfModel = @_get_index_of subber_selected
+        if indexOfModel > -1
+          @_remove_subber_ondisplay indexOfModel
+          @stopListening subber_selected
         else
-          @_render_to_chart(subber_selected.model)
 
+          @_render_to_chart subber_selected.model
+          @listenTo subber_selected, 'reRender', () =>
+            newIndex = @_get_index_of subber_selected
+            # @_remove_subber_ondisplay indexOfModel
+            # @_render_to_chart subber_selected.model
+            newDataset = @_get_user_stat subber_selected.model
+            oldDataset = @lineChart.getDatasetMeta(newIndex).data
+            dataToModify = @lineChart.data.datasets[newIndex].data
+            # console.log @lineChart.getDatasetMeta(newIndex).data.length
+            diffArr = @_get_diff oldDataset, newDataset
+            if diffArr && diffArr.length > 3
+              _.each diffArr, (index) =>
+                dataToModify.push newDataset[index]
+                # Add push new labels
+              # @lineChart.data.labels.shift()
+              @lineChart.update()
+              dataToModify.shift()
+
+  _get_diff: (oldArr, newArr) ->
+
+    if oldArr && newArr
+      outArr = []
+      oldArrLength = oldArr.length
+      newArrLength = newArr.length
+      diff = newArrLength - oldArrLength
+      if diff > 0
+      #   _.range(newArrLength - diff, newArrLength - 1).each (index) =>
+      #     outArr.push newArr[index]
+        return _.range(newArrLength - diff, newArrLength - 1)
+
+  _get_index_of: (name) ->
+    (_.map @lineChart.data.datasets, (set) => set.label).indexOf name.model.get('server_alias')
+
+  _remove_subber_ondisplay: (index) ->
+    @lineChart.data.datasets.splice index, 1
+
+  _render: ->
+    @$el.html @template()
+
+  _position: ->
+    @$wrapper.html @el
 
   reRender: ->
 

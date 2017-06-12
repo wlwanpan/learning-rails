@@ -12,12 +12,16 @@ class Main.Views.ChartSubber extends Backbone.View
   '''
   events:
     'click button': "_selected"
+
   initialize: (options) ->
     {@model, @$wrapper} = options
 
     @_render()
     @_position()
     @$button = @$('.chart-subber-button')
+
+    @listenTo @model, 'change :statistics', =>
+      @trigger 'reRender'
 
   _selected: ->
     #console.log "#{@model.get("server_alias")} is #{@$("input").is(':checked')}"
