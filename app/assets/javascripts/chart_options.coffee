@@ -13,6 +13,7 @@ window.ChartOptions =
     responsive: true
     scales:
       xAxes: [{
+        stacked: true
         scaleLabel:
           display: true
           labelString: 'Change int range to actual date'
@@ -23,6 +24,7 @@ window.ChartOptions =
           color: "#D3D3D3"
       }]
       yAxes: [{
+        stacked: false
         scaleLabel:
           display: false
           labelString: '# of Active Users'

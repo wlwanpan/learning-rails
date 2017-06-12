@@ -26,7 +26,9 @@ class Main.Views.Charts extends Backbone.View
           <i class="ci fi-graph-bar"></i>
         </div>
       </div>
-      <canvas class="chart-canvas"></canvas>
+      <div class="chart-area chart-custom-scroll">
+        <canvas class="chart-canvas"></canvas>
+      </div>
     </div>
 
   '''
@@ -40,7 +42,7 @@ class Main.Views.Charts extends Backbone.View
     @$form = @$(".search-form")
     @searchText = ""
     @chart_type = 'line'
-    @chart_buffer_range = 50
+    @subber_ondisplay = {}
 
     @reRender()
 
@@ -53,7 +55,7 @@ class Main.Views.Charts extends Backbone.View
     @searchText = @$(".search-form").val()
 
   _updateChartType: ->
-    # Change Chart type bar <-> line
+    # Change Chart type bar
     if @chart_type == 'bar'
       @chart_type = 'line'
     else
@@ -62,17 +64,18 @@ class Main.Views.Charts extends Backbone.View
     @lineChart.clear()
     @_render_chart()
 
-  _render_chart: () ->
+  _render_chart: ->
     @$canvas = @$(".chart-canvas")
 
     @lineChart = new Chart @$canvas,
       type: @chart_type
       options: ChartOptions.line
       data:
-        labels: _.range(@chart_buffer_range)
+        # labels: _.range(@chart_buffer_range)
+        labels: []
         datasets: []
 
-  _add_to_chart: (subberModel) ->
+  _render_to_chart: (subberModel) ->
     # Create New Data Array and push to Chart dataset
     # Change implementation to {...dataPoints: [{x: "date, y: user_count}, ...]}
     label = subberModel.get('server_alias')
@@ -87,11 +90,11 @@ class Main.Views.Charts extends Backbone.View
       data: user_count_data
 
     @lineChart.data.datasets.push dataset
-
-    if @lineChart.data.datasets.length > @chart_buffer_range
-      @lineChart.data.datasets.shift()
+    @lineChart.data.labels = @_get_chart_label subberModel.statistics.toJSON()
     @lineChart.update()
-    # console.log dataset
+
+    @listenTo subberModel.statistics, 'change', =>
+      console.log "#{subberModel.statistics} has new statistics added!!"
 
   _get_index_of: (name) ->
     (_.map @lineChart.data.datasets, (set) => set.label).indexOf name
@@ -99,6 +102,12 @@ class Main.Views.Charts extends Backbone.View
   _get_user_stat: (stats) ->
     return _.reduce stats, (accumulator, stat) ->
       accumulator.push stat.user_count
+      accumulator
+    , []
+
+  _get_chart_label: (stats) ->
+    return _.reduce stats, (accumulator, stat) ->
+      accumulator.push moment(stat.date).format('LTS')
       accumulator
     , []
 
@@ -129,7 +138,8 @@ class Main.Views.Charts extends Backbone.View
         if indexModel > -1
           @lineChart.data.datasets.splice indexModel, 1
         else
-          @_add_to_chart(subber_selected.model)
+          @_render_to_chart(subber_selected.model)
+
 
   reRender: ->
 

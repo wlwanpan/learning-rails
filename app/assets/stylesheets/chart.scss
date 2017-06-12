@@ -58,6 +58,9 @@ $chart-slide-offset: -175px;
         }
       }
     }
+    .chart-area {
+      overflow-x: scroll;
+    }
   }
 
   .subbers-placeholder {
