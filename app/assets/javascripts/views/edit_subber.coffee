@@ -33,6 +33,8 @@ class Main.Views.EditSubber extends Backbone.View
 
     input_data_hash = @_getData()
     @model.set input_data_hash
+
+
     if ! _.isEmpty input_data_hash
       # @model.save @model.as_json_for_save(),
       @model.save input_data_hash, ## <========== TO CHANGE TO ADD COLLECTION DATA SAVE
@@ -44,7 +46,7 @@ class Main.Views.EditSubber extends Backbone.View
         error: =>
           alert "Couldnt not save changes to database"
     else
-      alert "Invalid Data"
+      alert "Invalid Data" #Usually we will just let our backend deal with validation.
 
   _delete: ->
 
@@ -61,13 +63,17 @@ class Main.Views.EditSubber extends Backbone.View
 
   _getData: ->
     input_data_field = ["server_name", "server_location", "server_alias"]
-    return _.reduce input_data_field, (accumulator, input_tag) ->
+
+    # Reduce is popular with functional programming but most of our stack is object oriented. You won't see us using it alot
+    _.reduce input_data_field, (accumulator, input_tag) ->
 
       value = @$("input.#{input_tag}").val()
-      if value.length != 0
-        accumulator[input_tag] = value
+      # we often use implict truthy values so u can remote != 0
+      accumulator[input_tag] = value if value.length
       accumulator
     , {}
+
+
 
   initialize: (options) ->
     { @$wrapper, @model } = options

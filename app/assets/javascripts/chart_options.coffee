@@ -1,4 +1,6 @@
 
+# Try to avoid globals as much as possibe.
+# In your case there should be 1 gloab (MAIN) and you can define ChartOptions there
 window.ChartOptions =
   line:
     title:

@@ -1,7 +1,6 @@
 
 class Main.Views.ChartSubber extends Backbone.View
 
-  tagName: "div"
   template: _.template '''
 
     <button name="select" class="chart-subber-button primary hollow button">
@@ -11,15 +10,16 @@ class Main.Views.ChartSubber extends Backbone.View
 
   '''
   events:
-    'click button': "_selected"
+    'click button': "select"
+
   initialize: (options) ->
-    {@model, @$wrapper} = options
+    { @model, @$wrapper } = options
 
     @_render()
     @_position()
     @$button = @$('.chart-subber-button')
 
-  _selected: ->
+  select: -> # selected is closer to a boolean name. Like is_selected. The action you are preforming here is select
     #console.log "#{@model.get("server_alias")} is #{@$("input").is(':checked')}"
     if @$button.hasClass 'success'
       @$button.removeClass 'success'

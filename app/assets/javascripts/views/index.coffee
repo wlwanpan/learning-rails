@@ -1,7 +1,11 @@
+# In a bigger project try and follow the pattern of naming files based on a resource. It will make them easier to search for
+# Also if it is a view file we add _view at the end.
+# so servers_view.coffee  + server_item_view.coffee
+
 class Main.Views.Index extends Backbone.View
 
   updateTickRate: 1500
-  tagName: "div"
+  tagName: "div" # tag name will by default be div. You don't need to put this
   className: "row"
   template: _.template '''
 
@@ -33,7 +37,7 @@ class Main.Views.Index extends Backbone.View
 
   reRender: ->
     @_update_display()
-    @_position()
+    # @_position() # on a refresh you don't need to repostion in the dom. Just calling _render again will be enough
 
   _update_display: ->
     @_render()
@@ -54,12 +58,14 @@ class Main.Views.Index extends Backbone.View
       model: model
       $wrapper: @$(".place-subber-here")
 
-    @listenTo subber_view, "edit", () =>
-      model = subber_view.model
-      index = @collection.indexOf model
-      @_edit_subber
-        index: index
-        model: subber_view.model
+    # this logic belongs to the SubberItemView
+    # If we do add an event listner it will almost always be in the initalize function
+    # @listenTo subber_view, "edit", () =>
+    #   model = subber_view.model
+    #   index = @collection.indexOf model
+    #   @_edit_subber
+    #     index: index
+    #     model: subber_view.model
 
   _position: ->
     @$wrapper.html @el
@@ -85,4 +91,6 @@ class Main.Views.Index extends Backbone.View
 
     @modalPopUp = new Main.Views.EditSubber
       model: model
+      # If you need to find that secific item in the dom, then it is usally a good sign that this logic belongs in its own item view.
+      # In this case the logic should belong to a server_item_view. Which will handle its own edit events.
       $wrapper: @$(".place-subber-here > tr:nth-child("+(index+1)+")")

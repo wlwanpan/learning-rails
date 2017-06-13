@@ -40,6 +40,7 @@ class Main.Views.Home extends Backbone.View
     {@$wrapper, @collection} = options
     @_render()
 
+    # there is a catch all event "any"
     @listenTo @collection, 'add remove change', =>
       @_render()
 
@@ -52,9 +53,10 @@ class Main.Views.Home extends Backbone.View
 
   reRender: ->
     @_render()
-    @_position()
+    @_position() # don't need to position again on refresh
 
   _render: ->
+    # just style again but we use snake_case
     @$el.html @template(size: @collection.length, totalUsers: @_get_total_user())
 
   _position: ->

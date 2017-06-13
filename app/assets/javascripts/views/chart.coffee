@@ -46,6 +46,9 @@ class Main.Views.Charts extends Backbone.View
 
     @reRender()
 
+    # we usually pass in the function directly, no need for an extra bind statement
+    # @listenTo @collection, 'add remove', @render_subbers_selection
+
     @listenTo @collection, 'add remove', =>
       @_render_subbers_selection()
     @listenTo @collection, 'change', =>
@@ -124,6 +127,9 @@ class Main.Views.Charts extends Backbone.View
     @$wrapper.html @el
 
   _render_subbers_selection: ->
+    # _render_subbers_selection this method is 2 long. Try and split it up into smaller parts
+    # If you look at our code base most times you will find functions do very littel i.e _render and _position. We could have done that logic in the same function but we chose to split them up.
+
     subbersPlaceholder = @$(".subbers-placeholder")
     subbersPlaceholder.html ""
     @collection.each (sub) =>
@@ -133,6 +139,7 @@ class Main.Views.Charts extends Backbone.View
         model: sub
       # Add listen event to update subber chart to display
       @listenTo subber_selected, 'checked', () =>
+
 
         indexModel = @_get_index_of subber_selected.model.get('server_alias')
         if indexModel > -1
