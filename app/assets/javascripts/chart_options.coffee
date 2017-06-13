@@ -16,7 +16,7 @@ window.ChartOptions =
         stacked: true
         scaleLabel:
           display: true
-          labelString: 'Change int range to actual date'
+          labelString: 'Date Of Registered Entries / UTC'
           fontSize: 20
         gridLines:
           display: false

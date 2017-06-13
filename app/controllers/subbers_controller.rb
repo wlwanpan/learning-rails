@@ -16,7 +16,7 @@ class SubbersController < ApplicationController
       if @subber.save
         puts "subber successfully saved"
       else
-        puts "subber not saved"
+        raise "Subber could not be saved to database"
       end
     end
 
@@ -28,7 +28,7 @@ class SubbersController < ApplicationController
     if @subber.save
       puts "suber was successfully updated"
     else
-      puts "subber was not updated"
+      raise "subber was not updated"
     end
   end
 

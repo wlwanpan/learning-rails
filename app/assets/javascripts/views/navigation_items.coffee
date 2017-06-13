@@ -1,34 +1,37 @@
 
- class Main.Views.NavigationItems extends Backbone.View
+webicon = '''
+  <a href="#" data-path="charts" class="nav_item"><i class="fi fi-web"></i></a>
+'''
 
-    template: _.template '''
+class Main.Views.NavigationItems extends Backbone.View
 
-      <a href="#" data-path="" class="nav_item"><i class="fi fi-home"></i></a>
-      <a href="#" data-path="database" class="nav_item"><i class="fi fi-list-thumbnails"></i></a>
-      <a href="#" data-path="charts" class="nav_item"><i class="fi fi-graph-bar"></i></a>
-      <a href="#" data-path="charts" class="nav_item"><i class="fi fi-web"></i></a>
+  template: _.template '''
 
-    '''
-    events:
-      'click a.nav_item': "action_select"
+    <a href="#" data-path="" class="nav_item"><i class="fi fi-home"></i></a>
+    <a href="#" data-path="database" class="nav_item"><i class="fi fi-list-thumbnails"></i></a>
+    <a href="#" data-path="charts" class="nav_item"><i class="fi fi-graph-bar"></i></a>
 
-    action_select: (e) ->
+  '''
+  events:
+    'click a.nav_item': "action_select"
 
-      e.preventDefault()
-      $nav_item = @$(e.currentTarget)
-      path = $nav_item.data('path')
+  action_select: (e) ->
 
-      Main.Router.navigate path, trigger: true
+    e.preventDefault()
+    $nav_item = @$(e.currentTarget)
+    path = $nav_item.data('path')
 
-    initialize: (options) ->
+    Main.Router.navigate path, trigger: true
 
-      {@$wrapper} = options
+  initialize: (options) ->
 
-      @_render()
-      @_position()
+    {@$wrapper} = options
 
-    _render: ->
-      @$el.html @template()
+    @_render()
+    @_position()
 
-    _position: ->
-      @$wrapper.html @el
+  _render: ->
+    @$el.html @template()
+
+  _position: ->
+    @$wrapper.html @el

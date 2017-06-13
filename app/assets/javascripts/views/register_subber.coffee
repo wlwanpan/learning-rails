@@ -62,4 +62,5 @@ class Main.Views.RegisterSubber extends Backbone.View
     alert "Data successfully saved"
 
   _errorHandler: ->
-    alert "Error adding new subber to Db"
+    alert '''Error: Could not register subber.
+    Server Name, Server Location and Server Alias must be at least 5 characters'''
