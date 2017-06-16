@@ -36,6 +36,6 @@ module Clockwork
     Scheduler.public_send job
   end
 
-  every 1.minutes, :update_subber_statistics
+  every 5.seconds, :update_subber_statistics
 
 end

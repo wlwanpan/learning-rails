@@ -93,9 +93,6 @@ class Main.Views.Charts extends Backbone.View
     @lineChart.data.labels = @_get_chart_label subberModel
     @lineChart.update()
 
-    @listenTo subberModel.statistics, 'change', =>
-      console.log "#{subberModel.statistics} has new statistics added!!"
-
   _get_user_stat: (subberModel) ->
     stats = @_model_stats_tojson subberModel
     if stats

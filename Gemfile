@@ -35,6 +35,7 @@ gem 'jbuilder', '~> 2.5'
 
 # Use clockwork for scheduling
 gem 'clockwork'
+gem 'foreman'
 # Heroku production
 gem 'rails_12factor', group: :production
 
